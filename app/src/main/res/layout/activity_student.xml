@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".UiUtility.StudentActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Student Data"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center">
+    </TextView>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:hint="Student ID">
+    </EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:hint="Student Name">
+    </EditText>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:hint="Student Department">
+    </EditText>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/stdSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="15sp"
+        android:layout_margin="10dp"
+        android:padding="12dp"
+        android:textStyle="bold">
+    </androidx.appcompat.widget.AppCompatButton>
+
+</LinearLayout>
