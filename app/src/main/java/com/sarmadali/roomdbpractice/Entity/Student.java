@@ -16,7 +16,7 @@ public class Student {
     private String stdName;
     private String stdDepartment;
 
-    public Student(String stdName, @NonNull String stdId, String stdDepartment) {
+    public Student(String stdId, @NonNull String stdName, String stdDepartment) {
         this.stdName = stdName;
         this.stdId = stdId;
         this.stdDepartment = stdDepartment;

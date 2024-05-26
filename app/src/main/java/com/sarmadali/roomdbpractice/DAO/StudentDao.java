@@ -1,5 +1,6 @@
 package com.sarmadali.roomdbpractice.DAO;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
@@ -13,5 +14,9 @@ public interface StudentDao {
     @Insert
     void insertStudent(Student student);
     @Query("SELECT * FROM student")
-    List<Student> getAllStudents();
+    LiveData<List<Student>> getAllStudents();
+
+    //data deletion
+    @Query("DELETE FROM student")
+    void deleteAll();
 }

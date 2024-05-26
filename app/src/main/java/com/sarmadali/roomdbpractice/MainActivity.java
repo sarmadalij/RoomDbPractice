@@ -7,7 +7,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.sarmadali.roomdbpractice.UiUtility.CourseActivity;
 import com.sarmadali.roomdbpractice.UiUtility.StudentActivity;
+import com.sarmadali.roomdbpractice.UiUtility.TeacherActivity;
 import com.sarmadali.roomdbpractice.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Teacher Data", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, TeacherActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(MainActivity.this, "Course Data", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                startActivity(intent);
             }
         });
     }

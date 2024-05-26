@@ -12,12 +12,12 @@ public class Course {
 
     @NonNull
     @PrimaryKey()
-    private int courseCode;
+    private String courseCode;
 
     private String courseName;
     private int creditHours;
 
-    public Course(int courseCode, String courseName, int creditHours) {
+    public Course(String courseCode, String courseName, int creditHours) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.creditHours = creditHours;
@@ -25,7 +25,7 @@ public class Course {
 
     //setters
 
-    public void setCourseCode(int courseCode) {
+    public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
 
@@ -39,7 +39,7 @@ public class Course {
 
     //getters
 
-    public int getCourseCode() {
+    public String getCourseCode() {
         return courseCode;
     }
 

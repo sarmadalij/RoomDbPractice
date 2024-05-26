@@ -7,50 +7,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".UiUtility.StudentActivity">
+    tools:context=".UiUtility.CourseActivity">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Student Data"
+        android:text="Course Data"
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center">
     </TextView>
 
     <EditText
-        android:id="@+id/stdID"
+        android:id="@+id/courseCode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:hint="Student ID">
+        android:hint="Course Code">
     </EditText>
     <EditText
-        android:id="@+id/stdName"
+        android:id="@+id/courseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="10dp"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:hint="Student Name">
+        android:hint="Course Name">
     </EditText>
     <EditText
-        android:id="@+id/stdDept"
+        android:id="@+id/courseCredit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:padding="10dp"
+        android:inputType="number"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:hint="Student Department">
+        android:hint="Credit Hours">
     </EditText>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/stdSubmit"
+        android:id="@+id/courseSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Submit"
