@@ -4,19 +4,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.sarmadali.roomdbpractice.Adapter.CourseAdapter;
+import com.sarmadali.roomdbpractice.Adapter.TeacherAdapter;
+import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.Entity.Teacher;
 import com.sarmadali.roomdbpractice.ViewModel.TeacherViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityTeacherBinding;
+
+import java.util.List;
 
 public class TeacherActivity extends AppCompatActivity {
 
     private TeacherViewModel teacherViewModel;
 
     ActivityTeacherBinding teacherBinding;
+    RecyclerView teacherRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +42,7 @@ public class TeacherActivity extends AppCompatActivity {
             }
         });
 
+        showTeacherData();
     }
 
     private void sendTeacherData(){
@@ -44,5 +55,23 @@ public class TeacherActivity extends AppCompatActivity {
         teacherViewModel.insertTeacher(teacherData);
 
         Toast.makeText(TeacherActivity.this, "Send Teacher Data", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showTeacherData(){
+        teacherRecyclerView = teacherBinding.teacherRecyclerLayout;
+        teacherRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //create the adapter
+        final TeacherAdapter adapter = new TeacherAdapter(this);
+        teacherRecyclerView.setAdapter(adapter);
+
+        // Observe the LiveData
+        teacherViewModel.getTeacherAllData().observe(this, new Observer<List<Teacher>>() {
+            @Override
+            public void onChanged(@Nullable List<Teacher> teachers) {
+                // Update the adapter's data
+                adapter.setTeacher(teachers);
+            }
+        });
     }
 }

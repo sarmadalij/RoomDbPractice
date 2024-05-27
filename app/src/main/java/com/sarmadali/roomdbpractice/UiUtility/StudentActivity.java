@@ -5,17 +5,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.sarmadali.roomdbpractice.Adapter.StudentAdapter;
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.ViewModel.StudentViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityStudentBinding;
+
+import java.util.List;
 
 public class StudentActivity extends AppCompatActivity {
 
     private StudentViewModel studentViewModel;
     ActivityStudentBinding studentBinding;
+    RecyclerView studentRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +40,8 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
 
+
+        showStudentData();
     }
 
     private void sendStudentData(){
@@ -43,6 +53,23 @@ public class StudentActivity extends AppCompatActivity {
         studentViewModel.insertStudent(studentData);
 
         Toast.makeText(StudentActivity.this, "Send Student Data", Toast.LENGTH_SHORT).show();
+    }
+
+    private void showStudentData(){
+        studentRecyclerView = studentBinding.studentRecyclerLayout;
+        studentRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        //create the adapter
+        final StudentAdapter adapter = new StudentAdapter(this);
+        studentRecyclerView.setAdapter(adapter);
+        // Observe the LiveData
+        studentViewModel.getStudentAllData().observe(this, new Observer<List<Student>>() {
+            @Override
+            public void onChanged(@Nullable List<Student> students) {
+                // Update the adapter's data
+                adapter.setStudents(students);
+            }
+        });
     }
 
 }
