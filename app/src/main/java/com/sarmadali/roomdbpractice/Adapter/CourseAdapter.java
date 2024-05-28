@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sarmadali.roomdbpractice.Entity.Course;
-import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.R;
 
 import java.util.ArrayList;
@@ -46,6 +45,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.courseName.setText(courseModel.getCourseName());
         holder.courseCredit.setText(String.valueOf(courseModel.getCreditHours()));
 
+        //delete
         holder.deleteCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +55,15 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             }
         });
 
+        //update
+        holder.updateCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onUpdateClickListener != null) {
+                    onUpdateClickListener.onUpdateClick(courseModel);
+                }
+            }
+        });
     }
 
     @Override
@@ -71,7 +80,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public static class CourseViewHolder extends RecyclerView.ViewHolder{
 
         TextView courseCode, courseName, courseCredit;
-        ImageView deleteCourse;
+        ImageView deleteCourse, updateCourse;
         public CourseViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -80,14 +89,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             courseCredit = itemView.findViewById(R.id.fieldDept);
 
             deleteCourse = itemView.findViewById(R.id.deleteImage);
+            updateCourse = itemView.findViewById(R.id.updateImage);
 
         }
     }
 
-
-    //to delete
-
-    // Interface for item click events
+    // Interface for item delete event
     public interface OnDeleteCourseClickListener {
         void onDeleteClick(Course course);
     }
@@ -97,4 +104,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public void setOnDeleteClickListener(OnDeleteCourseClickListener listener) {
         this.onDeleteClickListener = listener;
     }
+
+    // Interface for item update events
+    public interface OnUpdateCourseClickListener {
+        void onUpdateClick(Course course);
+    }
+
+    private OnUpdateCourseClickListener onUpdateClickListener;
+
+    public void setOnUpdateClickListener(OnUpdateCourseClickListener listener) {
+        this.onUpdateClickListener = listener;
+    }
+
 }

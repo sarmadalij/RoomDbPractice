@@ -38,4 +38,14 @@ public class StudentRepository {
             studentDao.deleteStudent(student);
         });
     }
+
+    public void updateStudent(Student oldStudent, Student newStudent) {
+        DatabaseApp.databaseWriteExecutor.execute(() -> {
+            // Delete the old Student with the old primary key
+            studentDao.deleteStudent(oldStudent);
+
+            // Insert the new Student with the updated primary key
+            studentDao.insertStudent(newStudent);
+        });
+    }
 }

@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sarmadali.roomdbpractice.Entity.Course;
-import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.Entity.Teacher;
 import com.sarmadali.roomdbpractice.R;
 
@@ -47,11 +45,22 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
         holder.teacherName.setText(teacherModel.getTeacherName());
         holder.teacherDept.setText(teacherModel.getTeacherDept());
 
+        //delete
         holder.deleteTeacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onDeleteClickListener != null) {
                     onDeleteClickListener.onDeleteClick(teacherModel);
+                }
+            }
+        });
+
+        //update
+        holder.updateTeacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onUpdateClickListener != null){
+                    onUpdateClickListener.onUpdateClick(teacherModel);
                 }
             }
         });
@@ -72,7 +81,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
     public static class TeacherViewHolder extends RecyclerView.ViewHolder{
 
         TextView teacherID, teacherName, teacherDept;
-        ImageView deleteTeacher;
+        ImageView deleteTeacher, updateTeacher;
         public TeacherViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -81,6 +90,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
             teacherDept = itemView.findViewById(R.id.fieldDept);
 
             deleteTeacher = itemView.findViewById(R.id.deleteImage);
+            updateTeacher = itemView.findViewById(R.id.updateImage);
 
         }
     }
@@ -94,5 +104,16 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
 
     public void setOnDeleteClickListener(TeacherAdapter.OnDeleteTeacherClickListener listener) {
         this.onDeleteClickListener = listener;
+    }
+
+    // Interface for item update events
+    public interface OnUpdateTeacherClickListener {
+        void onUpdateClick(Teacher teacher);
+    }
+
+    private TeacherAdapter.OnUpdateTeacherClickListener onUpdateClickListener;
+
+    public void setOnUpdateClickListener(TeacherAdapter.OnUpdateTeacherClickListener listener) {
+        this.onUpdateClickListener = listener;
     }
 }

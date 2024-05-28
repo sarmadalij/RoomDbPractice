@@ -37,4 +37,14 @@ public class CourseRepository {
             courseDao.deleteCourse(course);
         });
     }
+
+    public void updateCourse(Course oldCourse, Course newCourse) {
+        DatabaseApp.databaseWriteExecutor.execute(() -> {
+            // Delete the old course with the old primary key
+            courseDao.deleteCourse(oldCourse);
+
+            // Insert the new course with the updated primary key
+            courseDao.insertCourse(newCourse);
+        });
+    }
 }

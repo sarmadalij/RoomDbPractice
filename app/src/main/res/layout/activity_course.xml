@@ -53,7 +53,7 @@
         android:id="@+id/courseSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Add Course"
         android:textSize="15sp"
         android:layout_margin="10dp"
         android:padding="12dp"

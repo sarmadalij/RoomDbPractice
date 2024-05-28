@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.sarmadali.roomdbpractice.Entity.Teacher;
 import com.sarmadali.roomdbpractice.Repository.TeacherRepository;
 
@@ -32,5 +31,9 @@ public class TeacherViewModel extends AndroidViewModel {
     }
     public void deleteTeacher(Teacher teacher){
         teacherRepository.deleteTeacher(teacher);
+    }
+
+    public void updateTeacher(Teacher oldTeacher, Teacher newTeacher) {
+        teacherRepository.updateTeacher(oldTeacher, newTeacher);
     }
 }

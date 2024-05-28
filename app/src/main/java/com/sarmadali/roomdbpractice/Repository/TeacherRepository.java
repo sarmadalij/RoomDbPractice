@@ -38,4 +38,14 @@ public class TeacherRepository {
             teacherDao.deleteTeacher(teacher);
         });
     }
+
+    public void updateTeacher(Teacher oldTeacher, Teacher newTeacher) {
+        DatabaseApp.databaseWriteExecutor.execute(() -> {
+            // Delete the old Teacher with the old primary key
+            teacherDao.deleteTeacher(oldTeacher);
+
+            // Insert the new Teacher with the updated primary key
+            teacherDao.insertTeacher(newTeacher);
+        });
+    }
 }

@@ -52,7 +52,7 @@
         android:id="@+id/teacherSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:text="Add Teacher"
         android:textSize="15sp"
         android:layout_margin="10dp"
         android:padding="12dp"
