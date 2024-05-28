@@ -19,7 +19,7 @@ import com.sarmadali.roomdbpractice.databinding.ActivityStudentBinding;
 
 import java.util.List;
 
-public class StudentActivity extends AppCompatActivity {
+public class StudentActivity extends AppCompatActivity implements StudentAdapter.OnDeleteStudentClickListener {
 
     private StudentViewModel studentViewModel;
     ActivityStudentBinding studentBinding;
@@ -61,6 +61,7 @@ public class StudentActivity extends AppCompatActivity {
 
         //create the adapter
         final StudentAdapter adapter = new StudentAdapter(this);
+        adapter.setOnDeleteClickListener(this);
         studentRecyclerView.setAdapter(adapter);
         // Observe the LiveData
         studentViewModel.getStudentAllData().observe(this, new Observer<List<Student>>() {
@@ -72,5 +73,10 @@ public class StudentActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onDeleteClick(Student student) {
+        studentViewModel.deleteStudent(student);
+        Toast.makeText(this, student.getStdId() +"'s Data Deleted", Toast.LENGTH_SHORT).show();
+    }
 }
 

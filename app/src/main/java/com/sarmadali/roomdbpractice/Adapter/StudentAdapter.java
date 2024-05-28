@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.R;
 
@@ -44,6 +45,15 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         holder.stdID.setText(studentModel.getStdId());
         holder.stdName.setText(studentModel.getStdName());
         holder.stdDept.setText(studentModel.getStdDepartment());
+
+        holder.deleteStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onDeleteClickListener != null) {
+                    onDeleteClickListener.onDeleteClick(studentModel);
+                }
+            }
+        });
     }
 
     @Override
@@ -69,5 +79,18 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
             deleteStudent = itemView.findViewById(R.id.deleteImage);
         }
+    }
+
+    //to delete
+
+    // Interface for item click events
+    public interface OnDeleteStudentClickListener {
+        void onDeleteClick(Student student);
+    }
+
+    private StudentAdapter.OnDeleteStudentClickListener onDeleteClickListener;
+
+    public void setOnDeleteClickListener(StudentAdapter.OnDeleteStudentClickListener listener) {
+        this.onDeleteClickListener = listener;
     }
 }

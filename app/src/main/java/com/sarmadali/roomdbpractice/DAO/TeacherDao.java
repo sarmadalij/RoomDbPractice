@@ -2,6 +2,7 @@ package com.sarmadali.roomdbpractice.DAO;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -17,7 +18,6 @@ public interface TeacherDao {
     @Query("SELECT * FROM teacher")
     LiveData<List<Teacher>> getAllTeachers();
 
-    //data deletion
-    @Query("DELETE FROM teacher")
-    void deleteAll();
+    @Delete
+    void deleteTeacher(Teacher teacher);
 }

@@ -45,6 +45,16 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         holder.courseCode.setText(courseModel.getCourseCode());
         holder.courseName.setText(courseModel.getCourseName());
         holder.courseCredit.setText(String.valueOf(courseModel.getCreditHours()));
+
+        holder.deleteCourse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onDeleteClickListener != null) {
+                    onDeleteClickListener.onDeleteClick(courseModel);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -72,5 +82,19 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
             deleteCourse = itemView.findViewById(R.id.deleteImage);
 
         }
+    }
+
+
+    //to delete
+
+    // Interface for item click events
+    public interface OnDeleteCourseClickListener {
+        void onDeleteClick(Course course);
+    }
+
+    private OnDeleteCourseClickListener onDeleteClickListener;
+
+    public void setOnDeleteClickListener(OnDeleteCourseClickListener listener) {
+        this.onDeleteClickListener = listener;
     }
 }

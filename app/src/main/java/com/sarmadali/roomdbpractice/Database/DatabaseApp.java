@@ -49,23 +49,21 @@ public abstract class DatabaseApp extends RoomDatabase {
      * Override the onCreate method to populate the database.
      * For this sample, we clear the database every time it is created.
      */
-
-    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback(){
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-
-            databaseWriteExecutor.execute(()->{
-                // Populate the database in the background.
-                // If you want to start with more data, just add them.
-
-                StudentDao stdDao = INSTANCE.studentDao();
-                stdDao.deleteAll();
-
-            });
-        }
-    };
+//    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback(){
+//        @Override
+//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+//            super.onCreate(db);
+//
+//            // If you want to keep data through app restarts,
+//            // comment out the following block
+//
+//            databaseWriteExecutor.execute(()->{
+//                // Populate the database in the background.
+//                // If you want to start with more data, just add them.
+//
+//                StudentDao stdDao = INSTANCE.studentDao();
+//                stdDao.deleteAll();
+//            });
+//        }
+//    };
 }

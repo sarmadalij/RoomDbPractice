@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.sarmadali.roomdbpractice.DAO.StudentDao;
 import com.sarmadali.roomdbpractice.Database.DatabaseApp;
+import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Student;
 
 import java.util.List;
@@ -29,6 +30,12 @@ public class StudentRepository {
     public void insertStudent(Student student){
         DatabaseApp.databaseWriteExecutor.execute(()->{
             studentDao.insertStudent(student);
+        });
+    }
+
+    public void  deleteStudent(Student student){
+        DatabaseApp.databaseWriteExecutor.execute(()->{
+            studentDao.deleteStudent(student);
         });
     }
 }

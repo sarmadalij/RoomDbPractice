@@ -22,7 +22,7 @@ import com.sarmadali.roomdbpractice.databinding.ActivityCourseBinding;
 
 import java.util.List;
 
-public class CourseActivity extends AppCompatActivity {
+public class CourseActivity extends AppCompatActivity implements CourseAdapter.OnDeleteCourseClickListener {
 
     private CourseViewModel courseViewModel;
     ActivityCourseBinding courseBinding;
@@ -64,6 +64,8 @@ public class CourseActivity extends AppCompatActivity {
 
         //create the adapter
         final CourseAdapter adapter = new CourseAdapter(this);
+        adapter.setOnDeleteClickListener(this);
+
         courseRecyclerView.setAdapter(adapter);
 
         // Observe the LiveData
@@ -74,5 +76,12 @@ public class CourseActivity extends AppCompatActivity {
                 adapter.setCourse(courses);
             }
         });
+    }
+
+    @Override
+    public void onDeleteClick(Course course) {
+        // Handle item deletion here
+        courseViewModel.deleteCourse(course);
+        Toast.makeText(this, course.getCourseName() +" Deleted", Toast.LENGTH_SHORT).show();
     }
 }

@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.Repository.StudentRepository;
 
@@ -30,5 +31,9 @@ public class StudentViewModel extends AndroidViewModel {
 
     public void insertStudent(Student student){
         studentRepository.insertStudent(student);
+    }
+
+    public void deleteStudent(Student student){
+        studentRepository.deleteStudent(student);
     }
 }

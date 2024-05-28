@@ -30,4 +30,7 @@ public class TeacherViewModel extends AndroidViewModel {
     public void insertTeacher(Teacher teacher){
         teacherRepository.insertTeacher(teacher);
     }
+    public void deleteTeacher(Teacher teacher){
+        teacherRepository.deleteTeacher(teacher);
+    }
 }

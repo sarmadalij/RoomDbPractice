@@ -31,4 +31,10 @@ public class CourseRepository {
             courseDao.insertCourse(course);
         });
     }
+
+    public void  deleteCourse(Course course){
+        DatabaseApp.databaseWriteExecutor.execute(()->{
+            courseDao.deleteCourse(course);
+        });
+    }
 }
