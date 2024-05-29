@@ -24,4 +24,7 @@ public interface StudentDao {
 
     @Update
     void updateStudent(Student student);
+
+    @Query("SELECT * FROM student WHERE stdId = :studentID AND stdPassword = :studentPassword LIMIT 1")
+    LiveData<Student> login(String studentID, String studentPassword);
 }

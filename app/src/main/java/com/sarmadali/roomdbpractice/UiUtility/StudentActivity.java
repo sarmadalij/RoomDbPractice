@@ -54,7 +54,8 @@ public class StudentActivity extends AppCompatActivity implements
         Student studentData = new Student(
                 studentBinding.stdID.getText().toString(),
                 studentBinding.stdName.getText().toString(),
-                studentBinding.stdDept.getText().toString());
+                studentBinding.stdDept.getText().toString(),
+                studentBinding.stdPassword.getText().toString());
         studentViewModel.insertStudent(studentData);
 
         Toast.makeText(StudentActivity.this, "Send Student Data", Toast.LENGTH_SHORT).show();
@@ -96,11 +97,15 @@ public class StudentActivity extends AppCompatActivity implements
         EditText editTextCourseCode = popupView.findViewById(R.id.editTextCourseCode);
         EditText editTextCourseName = popupView.findViewById(R.id.editTextCourseName);
         EditText editTextCourseCredit = popupView.findViewById(R.id.editTextCredit);
+        EditText editTextPass = popupView.findViewById(R.id.editTextPass);
 
         //setting text in the EditText
         editTextCourseCode.setText(student.getStdId());
         editTextCourseName.setText(student.getStdName());
         editTextCourseCredit.setText(student.getStdDepartment());
+
+        editTextPass.setVisibility(View.VISIBLE);
+        editTextPass.setText(student.getStdPassword());
 
         // Create and show the popup dialog
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this)
@@ -118,9 +123,10 @@ public class StudentActivity extends AppCompatActivity implements
             String updatedStdID = editTextCourseCode.getText().toString();
             String updatedStdName = editTextCourseName.getText().toString();
             String updatedStdDepart = editTextCourseCredit.getText().toString();
+            String updatedStdPass = editTextPass.getText().toString();
 
             // Update the student in the database
-            Student updatedStudent = new Student(updatedStdID, updatedStdName, updatedStdDepart);
+            Student updatedStudent = new Student(updatedStdID, updatedStdName, updatedStdDepart, updatedStdPass);
             studentViewModel.updateStudent(student, updatedStudent);
 
             // Dismiss the dialog

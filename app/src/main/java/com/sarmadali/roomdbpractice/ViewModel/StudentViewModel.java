@@ -38,4 +38,8 @@ public class StudentViewModel extends AndroidViewModel {
     public void updateStudent(Student oldStudent, Student newStudent) {
         studentRepository.updateStudent(oldStudent, newStudent);
     }
+
+    public LiveData<Student> loginStudent(String studentId, String studentPass) {
+        return studentRepository.loginStudent(studentId, studentPass);
+    }
 }

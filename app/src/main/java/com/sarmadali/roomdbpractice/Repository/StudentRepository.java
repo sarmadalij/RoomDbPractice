@@ -3,13 +3,16 @@ package com.sarmadali.roomdbpractice.Repository;
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.sarmadali.roomdbpractice.DAO.StudentDao;
 import com.sarmadali.roomdbpractice.Database.DatabaseApp;
-import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Student;
 
 import java.util.List;
+
+import kotlinx.coroutines.GlobalScope;
+import kotlinx.coroutines.Dispatchers;
 
 public class StudentRepository {
 
@@ -47,5 +50,9 @@ public class StudentRepository {
             // Insert the new Student with the updated primary key
             studentDao.insertStudent(newStudent);
         });
+    }
+
+    public LiveData<Student> loginStudent(String studentId, String studentPass){
+        return studentDao.login(studentId, studentPass);
     }
 }
