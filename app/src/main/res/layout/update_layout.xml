@@ -32,7 +32,14 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:inputType="textPassword"
-        android:visibility="invisible"
+        android:visibility="gone"
+        />
+    <EditText
+        android:id="@+id/editCourseTeacher"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="gone"
         />
 
 </LinearLayout>

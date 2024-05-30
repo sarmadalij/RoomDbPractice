@@ -30,6 +30,13 @@
         android:layout_weight="1"
         android:text="Department">
     </TextView>
+            <TextView
+                android:id="@+id/fieldCourseTeacher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                >
+            </TextView>
     <ImageView
         android:id="@+id/deleteImage"
         android:layout_width="0dp"

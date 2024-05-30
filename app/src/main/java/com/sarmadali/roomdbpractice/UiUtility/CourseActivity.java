@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.sarmadali.roomdbpractice.Adapter.CourseAdapter;
 import com.sarmadali.roomdbpractice.Entity.Course;
+import com.sarmadali.roomdbpractice.Entity.CourseWithTeacher;
 import com.sarmadali.roomdbpractice.R;
 import com.sarmadali.roomdbpractice.ViewModel.CourseViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityCourseBinding;
@@ -29,7 +30,6 @@ public class CourseActivity extends AppCompatActivity
 
     private CourseViewModel courseViewModel;
     ActivityCourseBinding courseBinding;
-
     RecyclerView courseRecyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +54,8 @@ public class CourseActivity extends AppCompatActivity
         Course courseData = new Course(
                 courseBinding.courseCode.getText().toString(),
                 courseBinding.courseName.getText().toString(),
-                Integer.parseInt(courseBinding.courseCredit.getText().toString()));
+                Integer.parseInt(courseBinding.courseCredit.getText().toString()),
+                courseBinding.courseTeacher.getText().toString());
 
         courseViewModel.insertCourse(courseData);
 
@@ -72,11 +73,17 @@ public class CourseActivity extends AppCompatActivity
         courseRecyclerView.setAdapter(adapter);
 
         // Observe the LiveData
-        courseViewModel.getCourseAllData().observe(this, new Observer<List<Course>>() {
+//        courseViewModel.getCourseAllData().observe(this, new Observer<List<Course>>() {
+//            @Override
+//            public void onChanged(@Nullable List<Course> courses) {
+//                // Update the adapter's data
+//                adapter.setCourse(courses);
+//            }
+//        });
+        courseViewModel.getCoursesWithTeachers().observe(this, new Observer<List<CourseWithTeacher>>() {
             @Override
-            public void onChanged(@Nullable List<Course> courses) {
-                // Update the adapter's data
-                adapter.setCourse(courses);
+            public void onChanged(List<CourseWithTeacher> courseWithTeachers) {
+                adapter.setCourses(courseWithTeachers);
             }
         });
     }
@@ -97,11 +104,15 @@ public class CourseActivity extends AppCompatActivity
         EditText editTextCourseCode = popupView.findViewById(R.id.editTextCourseCode);
         EditText editTextCourseName = popupView.findViewById(R.id.editTextCourseName);
         EditText editTextCourseCredit = popupView.findViewById(R.id.editTextCredit);
+        EditText editTextCourseTeacher = popupView.findViewById(R.id.editCourseTeacher);
+
+        editTextCourseTeacher.setVisibility(View.VISIBLE);
 
         //setting text in the EditText
         editTextCourseCode.setText(course.getCourseCode());
         editTextCourseName.setText(course.getCourseName());
         editTextCourseCredit.setText(String.valueOf(course.getCreditHours()));
+        editTextCourseTeacher.setText(course.getTeacherId());
 
         // Create and show the popup dialog
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this)
@@ -119,9 +130,10 @@ public class CourseActivity extends AppCompatActivity
             String updatedCourseCode = editTextCourseCode.getText().toString();
             String updatedCourseName = editTextCourseName.getText().toString();
             int updatedCourseCredit = Integer.parseInt(editTextCourseCredit.getText().toString());
+            String updatedCourseTeacher = editTextCourseTeacher.getText().toString();
 
             // Update the course in the database
-            Course updatedCourse = new Course(updatedCourseCode, updatedCourseName, updatedCourseCredit);
+            Course updatedCourse = new Course(updatedCourseCode, updatedCourseName, updatedCourseCredit,updatedCourseTeacher);
             courseViewModel.updateCourse(course, updatedCourse);
 
             // Dismiss the dialog

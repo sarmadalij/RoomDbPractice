@@ -9,8 +9,6 @@ public class Teacher {
 
     public Teacher() {
     }
-
-
     @NonNull
     @PrimaryKey()
     private String teacherId;
@@ -23,30 +21,23 @@ public class Teacher {
         this.teacherDept = teacherDept;
     }
     //setters
-
     public void setTeacherId(@NonNull String teacherId) {
         this.teacherId = teacherId;
     }
-
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
     }
-
     public void setTeacherDept(String teacherDept) {
         this.teacherDept = teacherDept;
     }
-
     //getters
-
     @NonNull
     public String getTeacherId() {
         return teacherId;
     }
-
     public String getTeacherName() {
         return teacherName;
     }
-
     public String getTeacherDept() {
         return teacherDept;
     }
