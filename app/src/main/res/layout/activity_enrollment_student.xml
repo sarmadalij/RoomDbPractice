@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -145,6 +145,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/enrollThisCourse"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Enroll this Course"
@@ -154,5 +155,72 @@
                 android:textColor="@color/white">
             </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Enrolled Courses"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:padding="10dp">
+        </TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".6"
+                android:text="Et. ID"
+                android:textSize="16sp"
+                android:layout_margin="5dp">
+            </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".9"
+                android:text="Name"
+                android:textSize="16sp"
+                android:layout_margin="5dp">
+            </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".9"
+                android:text="Credit Hrs"
+                android:textSize="16sp"
+                android:layout_margin="5dp">
+            </TextView>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:text="Teacher"
+                android:textSize="16sp"
+                android:layout_margin="5dp">
+            </TextView>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/enrollmentRecyclerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            android:layout_margin="5dp"
+            android:padding="3dp">
+        </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_margin="5dp"
+            android:padding="10dp"
+            android:text="Need Help?"
+            android:textColor="@color/black">
+        </TextView>
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

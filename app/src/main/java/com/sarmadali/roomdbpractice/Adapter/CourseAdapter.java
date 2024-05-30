@@ -21,9 +21,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     Context context;
     private List<Course> courseList = new ArrayList<>();
-
     private List<CourseWithTeacher> courses = new ArrayList<>();
-
     //constructor
     public CourseAdapter(Context context) {
         this.context = context;
