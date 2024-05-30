@@ -31,8 +31,11 @@ public class CourseViewModel extends AndroidViewModel {
     public LiveData<List<CourseWithTeacher>> getCoursesWithTeachers() {
         return coursesWithTeachers;
     }
-    //change end
 
+    public LiveData<CourseWithTeacher> getCourseWithTeacher(String courseCode) {
+        return courseRepository.getCourseWithTeacher(courseCode);
+    }
+    //change end
     public LiveData<List<Course>> getCourseAllData(){
         return courseAllData;
     }

@@ -35,11 +35,11 @@ public class CourseRepository {
     public LiveData<List<CourseWithTeacher>> getCoursesWithTeachers() {
         return courseWithTeacherAllData;
     }
-    public void insertTeacher(Teacher teacher) {
-        DatabaseApp.databaseWriteExecutor.execute(() -> {
-            courseDao.insertTeacher(teacher);
-        });
-    }
+//    public void insertTeacher(Teacher teacher) {
+//        DatabaseApp.databaseWriteExecutor.execute(() -> {
+//            courseDao.insertTeacher(teacher);
+//        });
+//    }
     //change ends
 
     public void insertCourse(Course course){
@@ -62,5 +62,9 @@ public class CourseRepository {
             // Insert the new course with the updated primary key
             courseDao.insertCourse(newCourse);
         });
+    }
+
+    public LiveData<CourseWithTeacher> getCourseWithTeacher(String courseCode) {
+        return courseDao.getCourseWithTeacher(courseCode);
     }
 }

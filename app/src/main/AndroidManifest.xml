@@ -34,7 +34,7 @@
             android:name=".UiUtility.StudentActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".AdminActivity"
             android:exported="true">
 
             <!-- <intent-filter> -->

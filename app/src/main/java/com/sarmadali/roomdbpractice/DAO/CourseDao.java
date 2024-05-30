@@ -20,19 +20,17 @@ public interface CourseDao {
 
     @Query("SELECT * FROM course")
     LiveData<List<Course>> getAllCourse(); //not being used currently
-
     //delete item
     @Delete
     void deleteCourse(Course course);
     @Update
     void updateCourse(Course course);
-
-
     //change
     @Query("SELECT * FROM course")
     LiveData<List<CourseWithTeacher>> getCoursesWithTeachers();
-
     @Insert
     void insertTeacher(Teacher teacher);
 
+    @Query("SELECT * FROM course WHERE courseCode = :courseCode")
+    LiveData<CourseWithTeacher> getCourseWithTeacher(String courseCode);
 }

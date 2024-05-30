@@ -24,6 +24,8 @@ public abstract class DatabaseApp extends RoomDatabase {
     public abstract CourseDao courseDao();
 
     public abstract TeacherDao teacherDao();
+//    public abstract EnrollmentDao enrollmentDao();
+
 
     private static volatile DatabaseApp INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;

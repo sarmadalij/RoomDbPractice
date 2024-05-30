@@ -2,15 +2,12 @@ package com.sarmadali.roomdbpractice;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
-import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.ViewModel.StudentViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityLauncherAppBinding;
 
@@ -29,7 +26,7 @@ public class LauncherAppActivity extends AppCompatActivity {
         launcherAppBinding.BtnAdminLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LauncherAppActivity.this, MainActivity.class);
+                Intent intent = new Intent(LauncherAppActivity.this, AdminActivity.class);
                 startActivity(intent);
             }
         });
@@ -49,12 +46,12 @@ public class LauncherAppActivity extends AppCompatActivity {
         String stdPassword = launcherAppBinding.txtStdPassLogin.getText().toString();
 
         if (TextUtils.isEmpty(stdID)) {
-            launcherAppBinding.txtStdIDLogin.setError("Cannot be empty");
+            launcherAppBinding.txtStdIDLogin.setError("This Field can't be empty");
             return; // Stop execution if id is not given/empty
         }
 
         if (TextUtils.isEmpty(stdPassword)) {
-            launcherAppBinding.txtStdPassLogin.setError("Password cannot be empty");
+            launcherAppBinding.txtStdPassLogin.setError("Password can't be empty");
             return; // Stop execution if password is empty
         }
 
@@ -63,7 +60,7 @@ public class LauncherAppActivity extends AppCompatActivity {
             if (userStudent != null){
                 Toast.makeText(LauncherAppActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LauncherAppActivity.this, EnrollmentStudent.class);
-                intent.putExtra("Student", (Parcelable) userStudent);
+                intent.putExtra("Student", userStudent);
                 startActivity(intent);
             } else {
                 Toast.makeText(this, "Login Failed", Toast.LENGTH_SHORT).show();
