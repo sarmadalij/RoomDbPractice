@@ -6,11 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Enrollment;
 import com.sarmadali.roomdbpractice.Entity.EnrollmentWithDetails;
 import com.sarmadali.roomdbpractice.R;
@@ -19,14 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EnrollmentAdapter extends RecyclerView.Adapter<EnrollmentAdapter.EnrollmentViewHolder>{
-
     Context context;
     private List<EnrollmentWithDetails> enrollments = new ArrayList<>();
-
+    //constructor
     public EnrollmentAdapter(Context context) {
         this.context = context;
     }
-
     @NonNull
     @Override
     public EnrollmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,9 +30,9 @@ public class EnrollmentAdapter extends RecyclerView.Adapter<EnrollmentAdapter.En
         View view = layoutInflater.inflate(R.layout.sample_layout, parent, false);
         return new EnrollmentViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull EnrollmentViewHolder holder, int position) {
+
         EnrollmentWithDetails currentEnrolled = enrollments.get(position);
 
         holder.enrollmentID.setText(String.valueOf(currentEnrolled.enrollment.getEnrollId()));
@@ -64,7 +59,6 @@ public class EnrollmentAdapter extends RecyclerView.Adapter<EnrollmentAdapter.En
         this.enrollments = enrollments;
         notifyDataSetChanged();
     }
-
     //view holder class
     class EnrollmentViewHolder extends RecyclerView.ViewHolder {
 

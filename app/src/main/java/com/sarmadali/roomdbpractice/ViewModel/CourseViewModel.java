@@ -12,34 +12,21 @@ import com.sarmadali.roomdbpractice.Repository.CourseRepository;
 import java.util.List;
 
 public class CourseViewModel extends AndroidViewModel {
-
     private CourseRepository courseRepository;
-    private LiveData<List<Course>> courseAllData;
-
     private LiveData<List<CourseWithTeacher>> coursesWithTeachers;
     public CourseViewModel(@NonNull Application application) {
         super(application);
 
         courseRepository = new CourseRepository(application);
-        courseAllData = courseRepository.getCourseAllData();
 
-        //change
         coursesWithTeachers = courseRepository.getCoursesWithTeachers();
     }
-
-    //change
     public LiveData<List<CourseWithTeacher>> getCoursesWithTeachers() {
         return coursesWithTeachers;
     }
-
     public LiveData<CourseWithTeacher> getCourseWithTeacher(String courseCode) {
         return courseRepository.getCourseWithTeacher(courseCode);
     }
-    //change end
-    public LiveData<List<Course>> getCourseAllData(){
-        return courseAllData;
-    }
-
     public void insertCourse(Course course){
         courseRepository.insertCourse(course);
     }
@@ -49,5 +36,8 @@ public class CourseViewModel extends AndroidViewModel {
 
     public void updateCourse(Course oldCourse, Course newCourse) {
         courseRepository.updateCourse(oldCourse, newCourse);
+    }
+    public LiveData<Integer> verifyTeacher(String teacherId) {
+        return courseRepository.isTeacherExists(teacherId);
     }
 }

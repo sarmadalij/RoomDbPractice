@@ -7,11 +7,9 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.sarmadali.roomdbpractice.Entity.Teacher;
 import com.sarmadali.roomdbpractice.Repository.TeacherRepository;
-
 import java.util.List;
 
 public class TeacherViewModel extends AndroidViewModel {
-
     private TeacherRepository teacherRepository;
     private LiveData<List<Teacher>> teacherAllData;
 

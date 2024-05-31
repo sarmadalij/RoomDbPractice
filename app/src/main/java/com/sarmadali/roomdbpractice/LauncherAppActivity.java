@@ -12,7 +12,6 @@ import com.sarmadali.roomdbpractice.ViewModel.StudentViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityLauncherAppBinding;
 
 public class LauncherAppActivity extends AppCompatActivity {
-
     private StudentViewModel studentViewModel;
     ActivityLauncherAppBinding launcherAppBinding;
     @Override
@@ -30,7 +29,6 @@ public class LauncherAppActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         // login button
         launcherAppBinding.BtnStdLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +37,6 @@ public class LauncherAppActivity extends AppCompatActivity {
             }
         });
     }
-
     private void loginStudent(){
 
         String stdID = launcherAppBinding.txtStdIDLogin.getText().toString();
@@ -54,7 +51,6 @@ public class LauncherAppActivity extends AppCompatActivity {
             launcherAppBinding.txtStdPassLogin.setError("Password can't be empty");
             return; // Stop execution if password is empty
         }
-
         //login through observe live data
         studentViewModel.loginStudent(stdID, stdPassword).observe(this, userStudent -> {
             if (userStudent != null){

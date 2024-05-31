@@ -70,8 +70,12 @@ public class EnrollmentStudent extends AppCompatActivity implements
     }
 
     private void searchCourse(){
-        String courseCode = enrollmentStudentBinding.searchCourseText.getText().toString();
 
+        String courseCode = enrollmentStudentBinding.searchCourseText.getText().toString();
+        if (TextUtils.isEmpty(courseCode)) {
+            enrollmentStudentBinding.searchCourseText.setError("This Field can't be empty");
+            return; // Stop execution if id is not given/empty
+        }
         courseViewModel.getCourseWithTeacher(courseCode).observe(this, courseWithTeacher -> {
             if (courseWithTeacher != null) {
 

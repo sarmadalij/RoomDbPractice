@@ -6,21 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentViewHolder> {
-
     Context context;
     private List<Student> studentList = new ArrayList<>();
-
     //constructor
     public StudentAdapter(Context context) {
         this.context = context;
@@ -34,7 +29,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         View view = layoutInflater.inflate(R.layout.sample_layout, parent, false);
         return new StudentViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
 
@@ -91,15 +85,11 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
         }
     }
 
-    //to delete
-
-    // Interface for item click events
+    // Interface for item click delete events
     public interface OnDeleteStudentClickListener {
         void onDeleteClick(Student student);
     }
-
     private StudentAdapter.OnDeleteStudentClickListener onDeleteClickListener;
-
     public void setOnDeleteClickListener(StudentAdapter.OnDeleteStudentClickListener listener) {
         this.onDeleteClickListener = listener;
     }
@@ -108,9 +98,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public interface OnUpdateStudentClickListener {
         void onUpdateClick(Student student);
     }
-
     private StudentAdapter.OnUpdateStudentClickListener onUpdateClickListener;
-
     public void setOnUpdateClickListener(StudentAdapter.OnUpdateStudentClickListener listener) {
         this.onUpdateClickListener = listener;
     }

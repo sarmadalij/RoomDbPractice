@@ -18,9 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewHolder> {
-
     Context context;
-    private List<Course> courseList = new ArrayList<>();
     private List<CourseWithTeacher> courses = new ArrayList<>();
     //constructor
     public CourseAdapter(Context context) {
@@ -35,19 +33,12 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         View view = layoutInflater.inflate(R.layout.sample_layout, parent, false);
         return new CourseViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull CourseViewHolder holder, int position) {
 
-//        Course courseModel = courseList.get(position);
-        //changed
         CourseWithTeacher current = courses.get(position);
 
         //set data in views
-//        holder.courseCode.setText(courseModel.getCourseCode());
-//        holder.courseName.setText(courseModel.getCourseName());
-//        holder.courseCredit.setText(String.valueOf(courseModel.getCreditHours()));
-        //changed
         holder.courseCode.setText(current.course.getCourseCode());
         holder.courseName.setText(current.course.getCourseName());
         holder.courseCredit.setText(String.valueOf(current.course.getCreditHours()));
@@ -84,11 +75,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public int getItemCount() {
         return courses.size();
     }
-
-//    public void setCourse(List<Course> course) {
-//        this.courseList = course;
-//        notifyDataSetChanged();
-//    }
     //changed
     public void setCourses(List<CourseWithTeacher> courses) {
         this.courses = courses;

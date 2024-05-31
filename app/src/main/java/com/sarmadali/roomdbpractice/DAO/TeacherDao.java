@@ -24,4 +24,7 @@ public interface TeacherDao {
 
     @Update
     void updateTeacher(Teacher teacher);
+
+    @Query("SELECT COUNT(*) FROM teacher WHERE teacherId = :teacherId")
+    LiveData<Integer> isTeacherExists(String teacherId);
 }

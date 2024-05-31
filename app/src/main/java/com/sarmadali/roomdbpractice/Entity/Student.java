@@ -2,7 +2,6 @@ package com.sarmadali.roomdbpractice.Entity;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -12,7 +11,6 @@ public class Student implements Parcelable {
 
     public Student() {
     }
-
     @NonNull
     @PrimaryKey()
     private String stdId;

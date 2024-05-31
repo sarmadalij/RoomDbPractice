@@ -6,21 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.sarmadali.roomdbpractice.Entity.Teacher;
 import com.sarmadali.roomdbpractice.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherViewHolder> {
-
     Context context;
     private List<Teacher> teacherList = new ArrayList<>();
-
     //constructor
     public TeacherAdapter(Context context) {
         this.context = context;
@@ -95,13 +90,11 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
         }
     }
 
-    // Interface for item click events
+    // Interface for item click delete events
     public interface OnDeleteTeacherClickListener {
         void onDeleteClick(Teacher teacher);
     }
-
     private TeacherAdapter.OnDeleteTeacherClickListener onDeleteClickListener;
-
     public void setOnDeleteClickListener(TeacherAdapter.OnDeleteTeacherClickListener listener) {
         this.onDeleteClickListener = listener;
     }
@@ -110,9 +103,7 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.TeacherV
     public interface OnUpdateTeacherClickListener {
         void onUpdateClick(Teacher teacher);
     }
-
     private TeacherAdapter.OnUpdateTeacherClickListener onUpdateClickListener;
-
     public void setOnUpdateClickListener(TeacherAdapter.OnUpdateTeacherClickListener listener) {
         this.onUpdateClickListener = listener;
     }

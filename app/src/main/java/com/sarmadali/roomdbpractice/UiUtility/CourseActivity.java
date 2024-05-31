@@ -5,29 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.sarmadali.roomdbpractice.Adapter.CourseAdapter;
 import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.CourseWithTeacher;
 import com.sarmadali.roomdbpractice.R;
 import com.sarmadali.roomdbpractice.ViewModel.CourseViewModel;
 import com.sarmadali.roomdbpractice.databinding.ActivityCourseBinding;
-
 import java.util.List;
 
 public class CourseActivity extends AppCompatActivity
         implements
         CourseAdapter.OnDeleteCourseClickListener,
         CourseAdapter.OnUpdateCourseClickListener {
-
     private CourseViewModel courseViewModel;
     ActivityCourseBinding courseBinding;
     RecyclerView courseRecyclerView;
@@ -38,28 +33,40 @@ public class CourseActivity extends AppCompatActivity
         setContentView(courseBinding.getRoot());
 
         courseViewModel = new ViewModelProvider(this).get(CourseViewModel.class);
-
         courseBinding.courseSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 sendCourseData();
             }
         });
-
         showCourseData();
     }
 
     private void sendCourseData(){
 
-        Course courseData = new Course(
-                courseBinding.courseCode.getText().toString(),
-                courseBinding.courseName.getText().toString(),
-                Integer.parseInt(courseBinding.courseCredit.getText().toString()),
-                courseBinding.courseTeacher.getText().toString());
+        String teacherID = courseBinding.courseTeacher.getText().toString();
+        if (teacherID.isEmpty()) {
+            courseBinding.courseTeacher.setError("Teacher ID cannot be empty");
+            return; // Stop execution if ID is not given/empty
+        }
 
-        courseViewModel.insertCourse(courseData);
+        courseViewModel.verifyTeacher(teacherID).observe(this, teacherExists ->{
+            if (teacherExists == null || teacherExists == 0) {
+                courseBinding.courseTeacher.setError("This Teacher doesn't exist");
+            } else {
+                //insert data
+                Course courseData = new Course(
+                        courseBinding.courseCode.getText().toString(),
+                        courseBinding.courseName.getText().toString(),
+                        Integer.parseInt(courseBinding.courseCredit.getText().toString()),
+                        courseBinding.courseTeacher.getText().toString());
 
-        Toast.makeText(CourseActivity.this, "Send Course Data", Toast.LENGTH_SHORT).show();
+                courseViewModel.insertCourse(courseData);
+
+                Toast.makeText(CourseActivity.this, "Send Course Data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     private void showCourseData(){
@@ -73,13 +80,6 @@ public class CourseActivity extends AppCompatActivity
         courseRecyclerView.setAdapter(adapter);
 
         // Observe the LiveData
-//        courseViewModel.getCourseAllData().observe(this, new Observer<List<Course>>() {
-//            @Override
-//            public void onChanged(@Nullable List<Course> courses) {
-//                // Update the adapter's data
-//                adapter.setCourse(courses);
-//            }
-//        });
         courseViewModel.getCoursesWithTeachers().observe(this, new Observer<List<CourseWithTeacher>>() {
             @Override
             public void onChanged(List<CourseWithTeacher> courseWithTeachers) {
@@ -94,7 +94,6 @@ public class CourseActivity extends AppCompatActivity
         courseViewModel.deleteCourse(course);
         Toast.makeText(this, course.getCourseName() +" Deleted", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onUpdateClick(Course course) {
         // Inflate the popup layout
@@ -139,6 +138,5 @@ public class CourseActivity extends AppCompatActivity
             // Dismiss the dialog
             alertDialog.dismiss();
         });
-
     }
 }

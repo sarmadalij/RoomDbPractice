@@ -24,10 +24,8 @@ import java.util.List;
 
 public class TeacherActivity extends AppCompatActivity implements
         TeacherAdapter.OnDeleteTeacherClickListener,
-        TeacherAdapter.OnUpdateTeacherClickListener{
-
+        TeacherAdapter.OnUpdateTeacherClickListener {
     private TeacherViewModel teacherViewModel;
-
     ActivityTeacherBinding teacherBinding;
     RecyclerView teacherRecyclerView;
     @Override
@@ -44,10 +42,8 @@ public class TeacherActivity extends AppCompatActivity implements
                 sendTeacherData();
             }
         });
-
         showTeacherData();
     }
-
     private void sendTeacherData(){
 
         Teacher teacherData = new Teacher(
@@ -59,7 +55,6 @@ public class TeacherActivity extends AppCompatActivity implements
 
         Toast.makeText(TeacherActivity.this, "Send Teacher Data", Toast.LENGTH_SHORT).show();
     }
-
     private void showTeacherData(){
         teacherRecyclerView = teacherBinding.teacherRecyclerLayout;
         teacherRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -80,13 +75,11 @@ public class TeacherActivity extends AppCompatActivity implements
             }
         });
     }
-
     @Override
     public void onDeleteClick(Teacher teacher) {
         teacherViewModel.deleteTeacher(teacher);
         Toast.makeText(this, teacher.getTeacherId()+"'s Data Deleted", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onUpdateClick(Teacher teacher) {
         // Inflate the popup layout

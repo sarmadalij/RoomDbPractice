@@ -14,6 +14,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:padding="13dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="#D5023D53"
         android:text="Student Data">
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -22,6 +26,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:padding="13dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="#D5023D53"
         android:text="Teacher Data">
     </androidx.appcompat.widget.AppCompatButton>
 
@@ -30,6 +38,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
+        android:padding="13dp"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:background="#D5023D53"
         android:text="Course Data">
     </androidx.appcompat.widget.AppCompatButton>
 </LinearLayout>

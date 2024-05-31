@@ -24,7 +24,6 @@ public class Course {
     private String teacherId;
 
     //constructors
-
     public Course(String courseCode, String courseName, int creditHours) {
         this.courseCode = courseCode;
         this.courseName = courseName;

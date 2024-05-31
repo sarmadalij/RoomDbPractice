@@ -24,8 +24,7 @@ import java.util.List;
 
 public class StudentActivity extends AppCompatActivity implements
         StudentAdapter.OnDeleteStudentClickListener,
-        StudentAdapter.OnUpdateStudentClickListener{
-
+        StudentAdapter.OnUpdateStudentClickListener {
     private StudentViewModel studentViewModel;
     ActivityStudentBinding studentBinding;
     RecyclerView studentRecyclerView;
@@ -44,8 +43,6 @@ public class StudentActivity extends AppCompatActivity implements
                 sendStudentData();
             }
         });
-
-
         showStudentData();
     }
 
@@ -80,13 +77,11 @@ public class StudentActivity extends AppCompatActivity implements
             }
         });
     }
-
     @Override
     public void onDeleteClick(Student student) {
         studentViewModel.deleteStudent(student);
         Toast.makeText(this, student.getStdId() +"'s Data Deleted", Toast.LENGTH_SHORT).show();
     }
-
     @Override
     public void onUpdateClick(Student student) {
 
@@ -134,4 +129,3 @@ public class StudentActivity extends AppCompatActivity implements
         });
     }
 }
-

@@ -5,7 +5,6 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 import com.sarmadali.roomdbpractice.DAO.CourseDao;
 import com.sarmadali.roomdbpractice.DAO.EnrollmentDao;
 import com.sarmadali.roomdbpractice.DAO.StudentDao;
@@ -14,7 +13,6 @@ import com.sarmadali.roomdbpractice.Entity.Course;
 import com.sarmadali.roomdbpractice.Entity.Enrollment;
 import com.sarmadali.roomdbpractice.Entity.Student;
 import com.sarmadali.roomdbpractice.Entity.Teacher;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,8 +23,6 @@ public abstract class DatabaseApp extends RoomDatabase {
     public abstract CourseDao courseDao();
     public abstract TeacherDao teacherDao();
     public abstract EnrollmentDao enrollmentDao();
-
-
     private static volatile DatabaseApp INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -44,26 +40,4 @@ public abstract class DatabaseApp extends RoomDatabase {
         }
         return INSTANCE;
     }
-
-    /**
-     * Override the onCreate method to populate the database.
-     * For this sample, we clear the database every time it is created.
-     */
-//    private static RoomDatabase.Callback roomCallBack = new RoomDatabase.Callback(){
-//        @Override
-//        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-//            super.onCreate(db);
-//
-//            // If you want to keep data through app restarts,
-//            // comment out the following block
-//
-//            databaseWriteExecutor.execute(()->{
-//                // Populate the database in the background.
-//                // If you want to start with more data, just add them.
-//
-//                StudentDao stdDao = INSTANCE.studentDao();
-//                stdDao.deleteAll();
-//            });
-//        }
-//    };
 }

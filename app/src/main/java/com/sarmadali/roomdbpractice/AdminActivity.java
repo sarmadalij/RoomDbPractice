@@ -4,18 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.sarmadali.roomdbpractice.UiUtility.CourseActivity;
 import com.sarmadali.roomdbpractice.UiUtility.StudentActivity;
 import com.sarmadali.roomdbpractice.UiUtility.TeacherActivity;
 import com.sarmadali.roomdbpractice.databinding.ActivityAdminBinding;
 
 public class AdminActivity extends AppCompatActivity {
-
     ActivityAdminBinding adminBinding;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

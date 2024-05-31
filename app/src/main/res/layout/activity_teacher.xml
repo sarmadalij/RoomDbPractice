@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:text="Teacher Data"
         android:textSize="20sp"
+        android:layout_margin="10dp"
         android:textStyle="bold"
         android:gravity="center">
     </TextView>
@@ -55,7 +56,9 @@
         android:text="Add Teacher"
         android:textSize="15sp"
         android:layout_margin="10dp"
-        android:padding="12dp"
+        android:padding="13dp"
+        android:textColor="@color/white"
+        android:background="#D5023D53"
         android:textStyle="bold">
     </androidx.appcompat.widget.AppCompatButton>
 
